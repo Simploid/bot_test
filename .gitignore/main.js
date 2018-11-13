@@ -71,7 +71,7 @@ bot.on('ready' , () => {
 	
 });
 
-bot.login("NTEwMDA1NzI4MjM3MzIyMjQw.DsfAcw.RzwdSSsdq9sb0IcTB6BmJOzeswg");
+bot.login(process.env.TOKEN);
 
 const botinter=new bot_interface();
 
