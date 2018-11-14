@@ -228,7 +228,7 @@ bot.on("message",message=>{
 			les_de=val[1].split("+");
 			for (i=0;i<les_de.length;i++){
 				result+=roller(les_de[i]);
-				if (i!=les_de.length){
+				if (i!=les_de.length-1){
 					result+="+";
 				}
 			}
