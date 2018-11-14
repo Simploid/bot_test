@@ -66,6 +66,35 @@ class bot_interface{
 	}
 }
 
+function roller(expression){
+    var sp=expression.split("d");
+    if (sp.length!=2){
+        return roller("1d6");
+    }
+    else if (sp[0]=="" && sp[1]==""){
+        return roller(1+"d"+6);
+    }
+    else if (sp[0]==""){
+        return roller(1+"d"+sp[1]);
+    }
+    else if (sp[1]==""){
+        return roller(sp[0]+"d"+6);
+    }
+    else {
+        var i=0;
+        var resul=""
+        for (i=0;i<sp[0];i++){
+            var r=Math.floor(Math.random()*sp[1]+1);
+            resul+=r;
+            if (i!=sp[0]-1){
+                resul+="+";
+            }
+        }
+        return resul;
+    }
+    
+}
+
 bot.on('ready' , () => {
 	console.log("Bot ready");
 	
@@ -194,12 +223,21 @@ bot.on("message",message=>{
 			botinter.der_expression[2]=message.author.username;
 		}
 		else if(val[0]==botinter.prefix+"roll"){
+			if (val.length!=2){
+				val=[botinter.prefix+"roll,1d6];
+			}
+			//verif pour des +
 			var les_de=val[1].split("d");
+			
+			if (les_de[0]==""){
+				les_de[0]=1;
+			}
+			if (les_de[1]==""){
+				les_de[1]=6;
+			}
 			var i=0;
 			var result=" Tu as tiré ";
-			if (les_de.length!=2){
-				les_de=[1,6];
-			}
+			
 			for (i=0;i<les_de[0];i++){
 				var r=Math.floor(Math.random()*les_de[1]+1);
 				result+=r;
