@@ -223,25 +223,12 @@ bot.on("message",message=>{
 			botinter.der_expression[2]=message.author.username;
 		}
 		else if(val[0]==botinter.prefix+"roll"){
-			if (val.length!=2){
-				val=[botinter.prefix+"roll 1d6"];
-			}
-			//verif pour des +
-			var les_de=val[1].split("d");
-			
-			if (les_de[0]==""){
-				les_de[0]=1;
-			}
-			if (les_de[1]==""){
-				les_de[1]=6;
-			}
 			var i=0;
 			var result=" Tu as tiré ";
-			
-			for (i=0;i<les_de[0];i++){
-				var r=Math.floor(Math.random()*les_de[1]+1);
-				result+=r;
-				if (i!=les_de[0]-1){
+			les_de=val[1].split("+");
+			for (i=0;i<les_de.length;i++){
+				result+=roller(les_de[i]);
+				if (i!=les_de.length){
 					result+="+";
 				}
 			}
