@@ -224,7 +224,7 @@ bot.on("message",message=>{
 		}
 		else if(val[0]==botinter.prefix+"roll"){
 			if (val.length!=2){
-				val=[botinter.prefix+"roll,1d6];
+				val=[botinter.prefix+"roll 1d6"];
 			}
 			//verif pour des +
 			var les_de=val[1].split("d");
